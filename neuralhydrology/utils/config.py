@@ -632,6 +632,10 @@ class Config(object):
         return self._cfg.get("per_basin_test_periods_file", None)
 
     @property
+    def per_basin_inference_periods_file(self) -> Path:
+        return self._cfg.get("per_basin_inference_periods_file", None)
+
+    @property
     def per_basin_train_periods_file(self) -> Path:
         return self._cfg.get("per_basin_train_periods_file", None)
 
@@ -781,6 +785,18 @@ class Config(object):
     @property
     def test_start_date(self) -> pd.Timestamp:
         return self._get_value_verbose("test_start_date")
+
+    @property
+    def inference_basin_file(self) -> Path:
+        return self._get_value_verbose("inference_basin_file")
+
+    @property
+    def inference_end_date(self) -> pd.Timestamp:
+        return self._get_value_verbose("inference_end_date")
+
+    @property
+    def inference_start_date(self) -> pd.Timestamp:
+        return self._get_value_verbose("inference_start_date")
 
     @property
     def timestep_counter(self) -> bool:

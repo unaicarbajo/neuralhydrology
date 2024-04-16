@@ -70,8 +70,8 @@ class BaseDataset(Dataset):
         self.cfg = cfg
         self.is_train = is_train
 
-        if period not in ["train", "validation", "test"]:
-            raise ValueError("'period' must be one of 'train', 'validation' or 'test' ")
+        if period not in ["train", "validation", "test", "inference"]:
+            raise ValueError("'period' must be one of 'train', 'validation', 'test' or 'inference' ")
         else:
             self.period = period
 

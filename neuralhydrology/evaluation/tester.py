@@ -52,10 +52,10 @@ class BaseTester(object):
         self.cfg = cfg
         self.run_dir = run_dir
         self.init_model = init_model
-        if period in ["train", "validation", "test"]:
+        if period in ["train", "validation", "test", "inference"]:
             self.period = period
         else:
-            raise ValueError(f'Invalid period {period}. Must be one of ["train", "validation", "test"]')
+            raise ValueError(f'Invalid period {period}. Must be one of ["train", "validation", "test", "inference"]')
 
         # determine device
         self._set_device()

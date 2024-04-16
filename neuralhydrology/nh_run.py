@@ -10,6 +10,8 @@ from neuralhydrology.training.train import start_training
 from neuralhydrology.utils.config import Config
 from neuralhydrology.utils.logging_utils import setup_logging
 
+from typing import Union
+
 
 def _get_args() -> dict:
     parser = argparse.ArgumentParser()
@@ -53,7 +55,7 @@ def _main():
         raise RuntimeError(f"Unknown mode {args['mode']}")
 
 
-def start_run(config_file: Path, gpu: int = None):
+def start_run(config_file: Union[Path, Config], gpu: int = None):
     """Start training a model.
     
     Parameters
@@ -65,7 +67,10 @@ def start_run(config_file: Path, gpu: int = None):
 
     """
 
-    config = Config(config_file)
+    if isinstance(config_file, Path):
+        config = Config(config_file)
+    else:
+        config = config_file
 
     # check if a GPU has been specified as command line argument. If yes, overwrite config
     if gpu is not None and gpu >= 0:
